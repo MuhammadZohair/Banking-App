@@ -1,0 +1,39 @@
+package com.shimirokach.bankingapp.ui.launch;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.shimirokach.bankingapp.R;
+import com.shimirokach.bankingapp.databinding.ActivityLandingBinding;
+import com.shimirokach.bankingapp.ui.auth.LoginActivity;
+import com.shimirokach.bankingapp.ui.auth.RegisterActivity;
+
+public class LaunchingActivity extends AppCompatActivity implements LaunchPageNavigator {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        ActivityLandingBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_landing);
+
+        LaunchViewModel viewModel = new ViewModelProvider(this).get(LaunchViewModel.class);
+        binding.setViewmodel(viewModel);
+        binding.setLifecycleOwner(this);
+
+        viewModel.setLaunchPageNavigator(this);
+    }
+
+    @Override
+    public void onLogin() {
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+    }
+
+    @Override
+    public void onRegistration() {
+        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+    }
+}

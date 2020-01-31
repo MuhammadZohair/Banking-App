@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="h1">@dimen/_22ssp</dimen>
+    <dimen name="h2">@dimen/_20ssp</dimen>
+    <dimen name="h3">@dimen/_18ssp</dimen>
+    <dimen name="h4">@dimen/_16ssp</dimen>
+    <dimen name="normal">@dimen/_14ssp</dimen>
+    <dimen name="small">@dimen/_12ssp</dimen>
+    <dimen name="extra_small">@dimen/_10ssp</dimen>
+    <dimen name="default_padding">@dimen/_8sdp</dimen>
+</resources>

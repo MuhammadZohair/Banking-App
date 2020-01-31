@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_dashboard"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_cheque"
+        android:enabled="true"
+        android:icon="@drawable/ic_cheque"
+        android:title="@string/cheque"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_transfer"
+        android:enabled="true"
+        android:icon="@drawable/ic_transfer"
+        android:title="@string/transfer"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_savings"
+        android:enabled="true"
+        android:icon="@drawable/ic_savings"
+        android:title="@string/savings"
+        app:showAsAction="ifRoom" />
+
+</menu>

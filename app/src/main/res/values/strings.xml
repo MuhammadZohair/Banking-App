@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Banking App</string>
+    <string name="terms_and_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="intro_text">"Easiest way to \nManage your money"</string>
+    <string name="welcome">Welcome</string>
+    <string name="home">Home</string>
+    <string name="add_bank">Add bank</string>
+    <string name="settings">Settings</string>
+    <string name="transfer">Transfer</string>
+    <string name="savings">Savings</string>
+    <string name="cheque">Cheque</string>
+
+    <string name="deposit">Deposit</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="don_t_have_an_account">Don\'t have an account? Create Here</string>
+    <string name="hello">Hello,</string>
+    <string name="login_first_to_continue">Login first to continue</string>
+    <string name="cheque_number">Cheque Number</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="description">Description</string>
+    <string name="amount">Amount</string>
+    <string name="already_account_prompt">Already have an account? Login Here</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register_now_for_free">Register now for free</string>
+
+    <string-array name="demo_array">
+        <item>User 1</item>
+        <item>User 2</item>
+    </string-array>
+</resources>
