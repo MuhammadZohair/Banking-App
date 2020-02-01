@@ -12,14 +12,31 @@ import com.shimirokach.bankingapp.utils.SessionManager;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * The type Profile view model.
+ */
 public class ProfileViewModel extends AndroidViewModel {
 
+    /**
+     * The Old password.
+     */
     public String oldPassword = "";
+    /**
+     * The New password.
+     */
     public String newPassword = "";
+    /**
+     * The Full name.
+     */
     public String fullName = "";
     private Repository repository;
     private ProfileCallBack profileCallBack;
 
+    /**
+     * Instantiates a new Profile view model.
+     *
+     * @param application the application
+     */
     public ProfileViewModel(@NonNull Application application) {
         super(application);
 
@@ -33,10 +50,20 @@ public class ProfileViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Sets profile call back.
+     *
+     * @param profileCallBack the profile call back
+     */
     void setProfileCallBack(ProfileCallBack profileCallBack) {
         this.profileCallBack = profileCallBack;
     }
 
+    /**
+     * On update button click.
+     *
+     * @param v the v
+     */
     public void onUpdateButtonClick(View v) {
         v.setEnabled(false);
 

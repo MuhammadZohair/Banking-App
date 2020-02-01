@@ -14,23 +14,50 @@ import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * The type Transfer view model.
+ */
 public class TransferViewModel extends AndroidViewModel {
 
+    /**
+     * The Account number.
+     */
     public String accountNumber = "";
+    /**
+     * The Account name.
+     */
     public String accountName = "";
+    /**
+     * The Amount.
+     */
     public String amount = "";
     private TransferCallBack transferCallBack;
     private Repository repository;
 
+    /**
+     * Instantiates a new Transfer view model.
+     *
+     * @param application the application
+     */
     public TransferViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository(application);
     }
 
+    /**
+     * Sets transfer call back.
+     *
+     * @param transferCallBack the transfer call back
+     */
     void setTransferCallBack(TransferCallBack transferCallBack) {
         this.transferCallBack = transferCallBack;
     }
 
+    /**
+     * On transfer button click.
+     *
+     * @param v the v
+     */
     public void onTransferButtonClick(View v) {
         v.setEnabled(false);
 

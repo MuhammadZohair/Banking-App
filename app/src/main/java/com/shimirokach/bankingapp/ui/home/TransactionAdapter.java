@@ -16,6 +16,9 @@ import com.shimirokach.bankingapp.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Transaction adapter.
+ */
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
 
     private List<Transactions> transactionsList = new ArrayList<>();
@@ -52,19 +55,44 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return transactionsList.size();
     }
 
+    /**
+     * Sets transaction list.
+     *
+     * @param transactions the transactions
+     */
     void setTransactionList(List<Transactions> transactions) {
         this.transactionsList = transactions;
         notifyDataSetChanged();
     }
 
 
+    /**
+     * The type View holder.
+     */
     class ViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * The Date text view.
+         */
         TextView dateTextView;
+        /**
+         * The Amount text view.
+         */
         TextView amountTextView;
+        /**
+         * The Receiver name text view.
+         */
         TextView receiverNameTextView;
+        /**
+         * The Account number text view.
+         */
         TextView accountNumberTextView;
 
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView the item view
+         */
         ViewHolder(View itemView) {
             super(itemView);
             dateTextView = itemView.findViewById(R.id.tv_date);

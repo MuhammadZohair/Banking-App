@@ -14,6 +14,9 @@ import com.shimirokach.bankingapp.ui.home.HomeFragment;
 import com.shimirokach.bankingapp.ui.savings.SavingsFragment;
 import com.shimirokach.bankingapp.ui.transfer.TransferFragment;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity implements MainCallBack {
 
     private MainViewModel viewModel;

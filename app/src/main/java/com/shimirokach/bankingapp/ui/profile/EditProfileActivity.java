@@ -14,6 +14,9 @@ import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
 
+/**
+ * The type Edit profile activity.
+ */
 public class EditProfileActivity extends AppCompatActivity implements ProfileCallBack {
 
     private ProfileViewModel viewModel;

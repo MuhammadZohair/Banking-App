@@ -12,6 +12,9 @@ import com.shimirokach.bankingapp.databinding.ActivityLandingBinding;
 import com.shimirokach.bankingapp.ui.auth.LoginActivity;
 import com.shimirokach.bankingapp.ui.auth.RegisterActivity;
 
+/**
+ * The type Launching activity.
+ */
 public class LaunchingActivity extends AppCompatActivity implements LaunchPageCallBack {
 
     @Override

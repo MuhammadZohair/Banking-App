@@ -13,6 +13,9 @@ import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * The type Auth view model.
+ */
 public class AuthViewModel extends AndroidViewModel {
 
     private static final String TAG = "AuthViewModel";
@@ -20,20 +23,47 @@ public class AuthViewModel extends AndroidViewModel {
     private Repository repository;
     private AuthCallBack authCallBack;
 
+    /**
+     * The Email address.
+     */
     public String emailAddress = "";
+    /**
+     * The Password.
+     */
     public String password = "";
+    /**
+     * The Confirm password.
+     */
     public String confirmPassword = "";
+    /**
+     * The Full name.
+     */
     public String fullName = "";
 
+    /**
+     * Instantiates a new Auth view model.
+     *
+     * @param application the application
+     */
     public AuthViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository(application);
     }
 
+    /**
+     * Sets auth call back.
+     *
+     * @param authCallBack the auth call back
+     */
     void setAuthCallBack(AuthCallBack authCallBack) {
         this.authCallBack = authCallBack;
     }
 
+    /**
+     * On login button click.
+     *
+     * @param view the view
+     */
     public void onLoginButtonClick(View view) {
         authCallBack.onStarted();
 
@@ -66,6 +96,11 @@ public class AuthViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * On register button click.
+     *
+     * @param view the view
+     */
     public void onRegisterButtonClick(View view) {
 
         authCallBack.onStarted();
@@ -109,6 +144,9 @@ public class AuthViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * On back pressed.
+     */
     public void onBackPressed() {
         authCallBack.onBackPressed();
     }

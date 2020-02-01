@@ -1,50 +1,78 @@
 package com.shimirokach.bankingapp.utils;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
-import android.widget.EditText;
 
 import org.joda.time.DateTime;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 
+/**
+ * The type Utils.
+ */
 public class Utils {
 
+    /**
+     * The constant DEBIT.
+     */
     public static final int DEBIT = 0;
+    /**
+     * The constant CREDIT.
+     */
     public static final int CREDIT = 1;
 
+    /**
+     * The constant INSERT.
+     */
     public static final int INSERT = 22;
+    /**
+     * The constant UPDATE.
+     */
     public static final int UPDATE = 33;
+    /**
+     * The constant DELETE.
+     */
     public static final int DELETE = 44;
+    /**
+     * The constant DELETE_ALL.
+     */
     public static final int DELETE_ALL = 55;
-
-    public static final int LOGIN = 111;
-
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
     private static final Pattern VALID_PASSWORD_REGEX =
             Pattern.compile("^(?=.*[0-9])(?=.*[a-z]).{6,}$", Pattern.CASE_INSENSITIVE);
 
+    /**
+     * Validate email boolean.
+     *
+     * @param emailStr the email str
+     * @return the boolean
+     */
     public static boolean validateEmail(CharSequence emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
 
+    /**
+     * Validate password boolean.
+     *
+     * @param passwordStr the password str
+     * @return the boolean
+     */
     public static boolean validatePassword(CharSequence passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.find();
     }
 
+    /**
+     * Generate token string.
+     *
+     * @return the string
+     */
     public static String generateToken() {
         String charstring = "abcdefghijklmnopqrstuvwxyz0123456789";
         String randalphanum = "";
@@ -67,57 +95,51 @@ public class Utils {
         return randalphanum;
     }
 
-    public static void getDate(Activity context, EditText editText) {
-        Calendar myCalendar = Calendar.getInstance();
-
-
-        DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            String myFormat = "dd-MM-yyyy";
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-            String startDateStr = sdf.format(myCalendar.getTime());
-            editText.setText(startDateStr);
-
-        };
-        new DatePickerDialog(Objects.requireNonNull(context), date, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
-
-    public static void getTime(Context context, EditText editText) {
-        Calendar mCurrentTime = Calendar.getInstance();
-        int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mCurrentTime.get(Calendar.MINUTE);
-        TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(context, (timePicker, hourOfDay, minute1) -> {
-            boolean isPM = (hourOfDay >= 12);
-            String time = " " + String.format("%02d:%02d %s",
-                    (hourOfDay == 12 || hourOfDay == 0) ? 12 : hourOfDay % 12, minute1, isPM ? "PM" : "AM");
-            editText.setText(time);
-        }, hour, minute, false);
-        mTimePicker.setTitle("Select Time");
-        mTimePicker.show();
-    }
-
+    /**
+     * Success.
+     *
+     * @param context the context
+     * @param message the message
+     */
     public static void success(Context context, String message) {
         Toasty.success(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
+    /**
+     * Error.
+     *
+     * @param context the context
+     * @param message the message
+     */
     public static void error(Context context, String message) {
         Toasty.error(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
+    /**
+     * Info.
+     *
+     * @param context the context
+     * @param message the message
+     */
     public static void info(Context context, String message) {
         Toasty.info(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
+    /**
+     * Warning.
+     *
+     * @param context the context
+     * @param message the message
+     */
     public static void warning(Context context, String message) {
         Toasty.warning(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
+    /**
+     * Gets current date.
+     *
+     * @return the current date
+     */
     public static String getCurrentDate() {
         StringBuilder stringBuilder = new StringBuilder();
         switch (DateTime.now().getDayOfWeek()) {

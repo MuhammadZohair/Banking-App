@@ -12,13 +12,27 @@ import com.shimirokach.bankingapp.utils.SessionManager;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * The type Savings view model.
+ */
 public class SavingsViewModel extends AndroidViewModel {
 
+    /**
+     * The Current balance.
+     */
     public String currentBalance = "";
+    /**
+     * The Amount.
+     */
     public String amount = "";
     private Repository repository;
     private SavingCallBack savingCallBack;
 
+    /**
+     * Instantiates a new Savings view model.
+     *
+     * @param application the application
+     */
     public SavingsViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository(application);
@@ -32,10 +46,20 @@ public class SavingsViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Sets saving call back.
+     *
+     * @param savingCallBack the saving call back
+     */
     void setSavingCallBack(SavingCallBack savingCallBack) {
         this.savingCallBack = savingCallBack;
     }
 
+    /**
+     * On withdraw button clicked.
+     *
+     * @param v the v
+     */
     public void onWithdrawButtonClicked(View v) {
         v.setEnabled(false);
 
@@ -68,6 +92,11 @@ public class SavingsViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * On deposit button clicked.
+     *
+     * @param v the v
+     */
     public void onDepositButtonClicked(View v) {
         v.setEnabled(false);
 

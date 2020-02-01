@@ -12,6 +12,9 @@ import com.shimirokach.bankingapp.databinding.ActivityRegisterBinding;
 import com.shimirokach.bankingapp.ui.main.MainActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
+/**
+ * The type Register activity.
+ */
 public class RegisterActivity extends AppCompatActivity implements AuthCallBack {
 
     private AuthViewModel viewModel;

@@ -10,6 +10,9 @@ import android.widget.Button;
 
 import com.shimirokach.bankingapp.R;
 
+/**
+ * The type Savings dialog.
+ */
 public class SavingsDialog extends Dialog implements View.OnClickListener {
 
     private Activity activity;
@@ -18,6 +21,12 @@ public class SavingsDialog extends Dialog implements View.OnClickListener {
     private Button operationButton;
 
 
+    /**
+     * Instantiates a new Savings dialog.
+     *
+     * @param activity the activity
+     * @param type     the type
+     */
     public SavingsDialog(Activity activity, boolean type) {
         super(activity);
         this.activity = activity;

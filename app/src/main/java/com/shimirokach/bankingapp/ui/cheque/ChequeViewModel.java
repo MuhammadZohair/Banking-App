@@ -14,22 +14,46 @@ import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * The type Cheque view model.
+ */
 public class ChequeViewModel extends AndroidViewModel {
 
+    /**
+     * The Cheque number.
+     */
     public String chequeNumber = "";
+    /**
+     * The Amount.
+     */
     public String amount = "";
     private Repository repository;
     private ChequeCallBack chequeCallBack;
 
+    /**
+     * Instantiates a new Cheque view model.
+     *
+     * @param application the application
+     */
     public ChequeViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository(application);
     }
 
+    /**
+     * Sets cheque call back.
+     *
+     * @param chequeCallBack the cheque call back
+     */
     void setChequeCallBack(ChequeCallBack chequeCallBack) {
         this.chequeCallBack = chequeCallBack;
     }
 
+    /**
+     * On deposit button clicked.
+     *
+     * @param v the v
+     */
     public void onDepositButtonClicked(View v) {
         v.setEnabled(false);
 

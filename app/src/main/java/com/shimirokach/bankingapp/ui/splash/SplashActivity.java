@@ -10,6 +10,9 @@ import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.ui.main.MainActivity;
 
+/**
+ * The type Splash activity.
+ */
 public class SplashActivity extends AppCompatActivity implements SplashCallBack {
 
     private SplashViewModel viewModel;

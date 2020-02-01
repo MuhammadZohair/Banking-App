@@ -19,6 +19,9 @@ import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.Objects;
 
+/**
+ * The type Savings fragment.
+ */
 public class SavingsFragment extends Fragment implements SavingCallBack {
 
 

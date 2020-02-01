@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,9 +11,8 @@
             name="viewModel"
             type="com.shimirokach.bankingapp.ui.transfer.TransferViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.shimirokach.bankingapp.ui.transfer.TransferFragment">
@@ -20,6 +21,8 @@
         android:id="@+id/linearLayout9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +76,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:fontFamily="@font/poppins_normal"
                 android:hint="@string/amount"
-                android:text="@={viewModel.amount}"
                 android:inputType="numberDecimal"
+                android:text="@={viewModel.amount}"
                 android:textSize="@dimen/normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
