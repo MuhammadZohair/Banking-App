@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.shimirokach.bankingapp.ui.transfer.TransferViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,35 +27,37 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:layout_constraintVertical_bias="0.20">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_margin="@dimen/default_padding"
-            android:background="@drawable/spinner_background">
+            android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/spinner"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_account_number"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding"
                 android:backgroundTint="@color/colorPrimary"
-                android:entries="@array/demo_array"
                 android:fontFamily="@font/poppins_normal"
-                android:theme="@style/SpinnerTheme" />
-        </LinearLayout>
+                android:hint="@string/account_number"
+                android:inputType="text"
+                android:text="@={viewModel.accountNumber}"
+                android:textSize="@dimen/normal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_cheque_number"
+                android:id="@+id/et_account_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding"
                 android:backgroundTint="@color/colorPrimary"
                 android:fontFamily="@font/poppins_normal"
-                android:hint="@string/branch_name"
+                android:hint="@string/receiver_name"
                 android:inputType="text"
+                android:text="@={viewModel.accountName}"
                 android:textSize="@dimen/normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +72,8 @@
                 android:layout_margin="@dimen/default_padding"
                 android:backgroundTint="@color/colorPrimary"
                 android:fontFamily="@font/poppins_normal"
-                android:hint="Amount"
+                android:hint="@string/amount"
+                android:text="@={viewModel.amount}"
                 android:inputType="numberDecimal"
                 android:textSize="@dimen/normal" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -86,6 +99,7 @@
         android:background="@drawable/button_background"
         android:fontFamily="@font/poppins_normal"
         android:text="@string/transfer"
+        android:onClick="@{(v) -> viewModel.onTransferButtonClick(v)}"
         android:textAllCaps="false"
         android:textColor="@color/colorText"
         android:textSize="@dimen/normal"
@@ -96,3 +110,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

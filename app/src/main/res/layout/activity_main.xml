@@ -6,20 +6,18 @@
     <data>
         <variable
             name="viewModel"
-            type="com.shimirokach.bankingapp.ui.home.HomeViewModel" />
+            type="com.shimirokach.bankingapp.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.shimirokach.bankingapp.ui.home.HomeActivity">
+        tools:context="com.shimirokach.bankingapp.ui.main.MainActivity">
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

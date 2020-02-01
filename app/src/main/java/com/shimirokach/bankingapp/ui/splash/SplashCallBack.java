@@ -1,6 +1,6 @@
 package com.shimirokach.bankingapp.ui.splash;
 
-public interface SplashNavigator {
+public interface SplashCallBack {
 
     void onLoaded(boolean isLogin);
 }

@@ -1,7 +1,5 @@
 package com.shimirokach.bankingapp.data.local.entities;
 
-import android.content.Intent;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -17,15 +15,18 @@ public class Transactions {
     private Double amount;
     private Integer type;
 
-    @ColumnInfo(name = "receiver_id")
-    private String receiverId;
+    @ColumnInfo(name = "receiver_name")
+    private String receiverName;
 
-    public Transactions(Long transactionId, String date, Double amount, Integer type, String receiverId) {
-        this.transactionId = transactionId;
+    @ColumnInfo(name = "receiver_account")
+    private String receiverAccount;
+
+    public Transactions(String date, Double amount, Integer type, String receiverName, String receiverAccount) {
         this.date = date;
         this.amount = amount;
         this.type = type;
-        this.receiverId = receiverId;
+        this.receiverName = receiverName;
+        this.receiverAccount = receiverAccount;
     }
 
     public Long getTransactionId() {
@@ -60,12 +61,20 @@ public class Transactions {
         this.type = type;
     }
 
-    public String getReceiverId() {
-        return receiverId;
+    public String getReceiverName() {
+        return receiverName;
     }
 
-    public void setReceiverId(String receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public String getReceiverAccount() {
+        return receiverAccount;
+    }
+
+    public void setReceiverAccount(String receiverAccount) {
+        this.receiverAccount = receiverAccount;
     }
 
     @Override
@@ -75,7 +84,8 @@ public class Transactions {
                 ", date='" + date + '\'' +
                 ", amount=" + amount +
                 ", type=" + type +
-                ", receiverId='" + receiverId + '\'' +
+                ", receiverName='" + receiverName + '\'' +
+                ", receiverAccount='" + receiverAccount + '\'' +
                 '}';
     }
 }

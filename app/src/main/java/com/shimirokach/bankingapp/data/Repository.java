@@ -28,7 +28,7 @@ public class Repository {
         userDao = database.userDao();
         transactionsDao = database.transactionsDao();
 
-        allUsers = userDao.getAllUsers();
+        allUsers = userDao.getAll();
         allTransactions = transactionsDao.getAllTransactions();
     }
 
@@ -52,6 +52,15 @@ public class Repository {
         return new UserPresentAsyncTask(userDao).execute(email).get();
     }
 
+    public User getUserById(Long id) throws ExecutionException, InterruptedException {
+        return new UserGetByIdAsyncTask(userDao).execute(id).get();
+    }
+
+    public User getUserByToken(String token) throws ExecutionException, InterruptedException {
+        return new UserGetByTokenAsyncTask(userDao).execute(token).get();
+    }
+
+
     public LiveData<List<User>> getAllUsers() {
         return allUsers;
     }
@@ -73,7 +82,6 @@ public class Repository {
         return allTransactions;
     }
 
-
     private static class UserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDao userDao;
         private Integer code;
@@ -87,16 +95,16 @@ public class Repository {
         protected Void doInBackground(User... users) {
             switch (code) {
                 case Utils.INSERT:
-                    userDao.insertUser(users[0]);
+                    userDao.insert(users[0]);
                     break;
                 case Utils.UPDATE:
-                    userDao.updateUser(users[0]);
+                    userDao.update(users[0]);
                     break;
                 case Utils.DELETE:
-                    userDao.deleteUser(users[0]);
+                    userDao.delete(users[0]);
                     break;
                 case Utils.DELETE_ALL:
-                    userDao.deleteAllUsers();
+                    userDao.deleteAll();
                     break;
 
             }
@@ -113,7 +121,33 @@ public class Repository {
 
         @Override
         protected User doInBackground(String... strings) {
-            return userDao.loginUser(strings[0], strings[1]);
+            return userDao.login(strings[0], strings[1]);
+        }
+    }
+
+    private static class UserGetByIdAsyncTask extends AsyncTask<Long, Void, User> {
+        private UserDao userDao;
+
+        private UserGetByIdAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
+        }
+
+        @Override
+        protected User doInBackground(Long... longs) {
+            return userDao.getById(longs[0]);
+        }
+    }
+
+    private static class UserGetByTokenAsyncTask extends AsyncTask<String, Void, User> {
+        private UserDao userDao;
+
+        private UserGetByTokenAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
+        }
+
+        @Override
+        protected User doInBackground(String... strings) {
+            return userDao.getByToken(strings[0]);
         }
     }
 
@@ -126,7 +160,7 @@ public class Repository {
 
         @Override
         protected Boolean doInBackground(String... strings) {
-            return userDao.isUserRegistered(strings[0])!= null;
+            return userDao.isRegistered(strings[0]) != null;
         }
     }
 

@@ -1,44 +1,35 @@
-package com.shimirokach.bankingapp.ui.home;
+package com.shimirokach.bankingapp.ui.main;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.shimirokach.bankingapp.databinding.ActivityHomeBinding;
-import com.shimirokach.bankingapp.databinding.ActivityLoginBinding;
-import com.shimirokach.bankingapp.ui.auth.AuthViewModel;
+import com.shimirokach.bankingapp.R;
+import com.shimirokach.bankingapp.databinding.ActivityMainBinding;
+import com.shimirokach.bankingapp.ui.cheque.ChequeFragment;
+import com.shimirokach.bankingapp.ui.home.HomeFragment;
 import com.shimirokach.bankingapp.ui.savings.SavingsFragment;
 import com.shimirokach.bankingapp.ui.transfer.TransferFragment;
-import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.ui.cheque.ChequeFragment;
-import com.shimirokach.bankingapp.utils.Utils;
 
-public class HomeActivity extends AppCompatActivity implements HomeNavigator {
+public class MainActivity extends AppCompatActivity implements MainCallBack {
 
-    private HomeViewModel viewModel;
-    private ActivityHomeBinding binding;
+    private MainViewModel viewModel;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
-        viewModel.setHomeNavigator(this);
+        viewModel.setMainCallBack(this);
         loadFragment(new HomeFragment());
     }
 

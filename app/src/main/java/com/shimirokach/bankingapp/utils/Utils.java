@@ -4,27 +4,14 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 
-import androidx.appcompat.app.AlertDialog;
+import org.joda.time.DateTime;
 
-import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,23 +45,19 @@ public class Utils {
         return matcher.find();
     }
 
-    public static String generateToken()
-    {
+    public static String generateToken() {
         String charstring = "abcdefghijklmnopqrstuvwxyz0123456789";
         String randalphanum = "";
         double randroll;
         String randchar;
         for
-        (double i = 0; i < 150; i++)
-        {
+        (double i = 0; i < 150; i++) {
             randroll = Math.random();
             randchar = "";
             for
-            (int j = 1; j <= 35; j++)
-            {
+            (int j = 1; j <= 35; j++) {
                 if
-                (randroll <= (1.0 / 36.0 * j))
-                {
+                (randroll <= (1.0 / 36.0 * j)) {
                     randchar = Character.toString(charstring.charAt(j - 1));
                     break;
                 }
@@ -135,18 +118,36 @@ public class Utils {
         Toasty.warning(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
-    public static void saveDataInSharedPrefs(Context context, String key, String value) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).apply();
-    }
+    public static String getCurrentDate() {
+        StringBuilder stringBuilder = new StringBuilder();
+        switch (DateTime.now().getDayOfWeek()) {
+            case 1:
+                stringBuilder.append("Monday,  ");
+                break;
+            case 2:
+                stringBuilder.append("Tuesday,  ");
+                break;
+            case 3:
+                stringBuilder.append("Wednesday,  ");
+                break;
+            case 4:
+                stringBuilder.append("Thursday,  ");
+                break;
+            case 5:
+                stringBuilder.append("Friday,  ");
+                break;
+            case 6:
+                stringBuilder.append("Saturday,  ");
+                break;
+            case 7:
+                stringBuilder.append("Sunday,  ");
+                break;
+        }
 
-    public static String getDataFromSharedPrefs(Context context, String key) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(key, "");
-    }
+        stringBuilder.append(DateTime.now().getDayOfMonth() + "/" +
+                DateTime.now().getMonthOfYear() + "/" +
+                DateTime.now().getYear());
 
-    public static void clearSharedPrefs(Context context) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("email", "").apply();
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("password", "").apply();
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("type", "").apply();
+        return stringBuilder.toString();
     }
-
 }

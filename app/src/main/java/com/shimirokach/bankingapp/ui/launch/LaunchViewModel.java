@@ -10,22 +10,22 @@ public class LaunchViewModel extends AndroidViewModel {
 
     private static final String TAG = "LaunchViewModel";
 
-    private LaunchPageNavigator launchPageNavigator = null;
+    private LaunchPageCallBack launchPageCallBack = null;
 
 
     public LaunchViewModel(@NonNull Application application) {
         super(application);
     }
 
-    void setLaunchPageNavigator(LaunchPageNavigator launchPageNavigator) {
-        this.launchPageNavigator = launchPageNavigator;
+    void setLaunchPageCallBack(LaunchPageCallBack launchPageCallBack) {
+        this.launchPageCallBack = launchPageCallBack;
     }
 
     public void onLoginButtonClick(View view) {
-        launchPageNavigator.onLogin();
+        launchPageCallBack.onLogin();
     }
 
     public void onRegisterButtonClick(View view) {
-        launchPageNavigator.onRegistration();
+        launchPageCallBack.onRegistration();
     }
 }

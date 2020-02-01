@@ -23,7 +23,7 @@
     <item
         android:id="@+id/action_savings"
         android:enabled="true"
-        android:icon="@drawable/ic_savings"
+        android:icon="@drawable/ic_saving"
         android:title="@string/savings"
         app:showAsAction="ifRoom" />
 

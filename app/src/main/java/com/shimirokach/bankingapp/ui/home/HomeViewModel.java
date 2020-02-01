@@ -1,39 +1,65 @@
 package com.shimirokach.bankingapp.ui.home;
 
 import android.app.Application;
-import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.BindingMethod;
-import androidx.databinding.BindingMethods;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.shimirokach.bankingapp.data.Repository;
+import com.shimirokach.bankingapp.data.local.entities.Transactions;
+import com.shimirokach.bankingapp.data.local.entities.User;
+import com.shimirokach.bankingapp.utils.SessionManager;
+import com.shimirokach.bankingapp.utils.Utils;
 
-@BindingMethods({
-        @BindingMethod(
-                type = BottomNavigationView.class,
-                attribute = "app:onNavigationItemSelected",
-                method = "setOnNavigationItemSelectedListener"
-        ),
-})
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class HomeViewModel extends AndroidViewModel {
 
-    private static final String TAG = "HomeViewModel";
+    public String fullName = "";
+    public String emailAddress = "";
+    public Double balance = 0D;
+    public String currentDate = "";
+    private HomeCallBack homeCallBack;
+    private Repository repository;
+    private User user;
 
-    private HomeNavigator homeNavigator;
+    private LiveData<List<Transactions>> allTransactions;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
+
+        repository = new Repository(application);
+        try {
+            user = repository.getUserByToken(SessionManager.getInstance().getToken());
+            allTransactions = repository.getAllTransactions();
+
+            fullName = user.getFullName();
+            emailAddress = user.getEmail();
+            balance = user.getBalance();
+            currentDate = Utils.getCurrentDate();
+
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    void setHomeNavigator(HomeNavigator homeNavigator) {
-        this.homeNavigator = homeNavigator;
+    void setHomeCallBack(HomeCallBack homeCallBack) {
+        this.homeCallBack = homeCallBack;
     }
 
-    public boolean onNavigationClick(@NonNull MenuItem item) {
-        homeNavigator.onNavigationItemClick(item.getItemId());
-        return true;
+    public void onEditClicked(View view) {
+        homeCallBack.onEditClicked(view);
+    }
+
+    public void onLogoutClicked(View view) {
+        homeCallBack.onLogoutClicked(view);
+    }
+
+    public LiveData<List<Transactions>> getAllTransactions() {
+        return allTransactions;
     }
 }

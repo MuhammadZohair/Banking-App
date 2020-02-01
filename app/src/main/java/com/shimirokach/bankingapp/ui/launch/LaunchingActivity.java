@@ -1,18 +1,18 @@
 package com.shimirokach.bankingapp.ui.launch;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Intent;
-import android.os.Bundle;
 
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.databinding.ActivityLandingBinding;
 import com.shimirokach.bankingapp.ui.auth.LoginActivity;
 import com.shimirokach.bankingapp.ui.auth.RegisterActivity;
 
-public class LaunchingActivity extends AppCompatActivity implements LaunchPageNavigator {
+public class LaunchingActivity extends AppCompatActivity implements LaunchPageCallBack {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class LaunchingActivity extends AppCompatActivity implements LaunchPageNa
         binding.setViewmodel(viewModel);
         binding.setLifecycleOwner(this);
 
-        viewModel.setLaunchPageNavigator(this);
+        viewModel.setLaunchPageCallBack(this);
     }
 
     @Override

@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.databinding.ActivityLoginBinding;
-import com.shimirokach.bankingapp.ui.home.HomeActivity;
+import com.shimirokach.bankingapp.ui.main.MainActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
-public class LoginActivity extends AppCompatActivity implements AuthListener {
+public class LoginActivity extends AppCompatActivity implements AuthCallBack {
 
     private AuthViewModel viewModel;
     private ActivityLoginBinding binding;
@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
         binding.setViewmodel(viewModel);
         binding.setLifecycleOwner(this);
 
-        viewModel.setAuthListener(this);
+        viewModel.setAuthCallBack(this);
 
     }
 
@@ -41,7 +41,8 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
     public void onSuccess() {
         binding.setIsLoading(false);
         finish();
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        Utils.success(getApplicationContext(), "Login Successful");
     }
 
     @Override

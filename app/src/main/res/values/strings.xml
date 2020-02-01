@@ -27,6 +27,13 @@
     <string name="full_name">Full Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register_now_for_free">Register now for free</string>
+    <string name="no_transactions_available">No Transactions Available</string>
+    <string name="history">History</string>
+    <string name="account_number">Account Number</string>
+    <string name="receiver_name">Receiver Name</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New Password</string>
+    <string name="update">Update</string>
 
     <string-array name="demo_array">
         <item>User 1</item>

@@ -2,7 +2,6 @@ package com.shimirokach.bankingapp.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 public class SessionManager {
 
@@ -48,7 +47,7 @@ public class SessionManager {
         return mPref.getBoolean(KEY_NEW_LOGIN, true);
     }
 
-    public void expireToken(String key) {
-        mPref.edit().remove(key).apply();
+    public void expireToken() {
+        mPref.edit().remove(KEY_TOKEN).apply();
     }
 }

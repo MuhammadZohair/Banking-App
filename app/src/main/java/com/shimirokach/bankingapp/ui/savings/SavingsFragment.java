@@ -1,42 +1,70 @@
 package com.shimirokach.bankingapp.ui.savings;
 
-import androidx.lifecycle.ViewModelProviders;
-
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.shimirokach.bankingapp.R;
+import com.shimirokach.bankingapp.databinding.FragmentSavingsBinding;
+import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
+import com.shimirokach.bankingapp.utils.Utils;
 
-public class SavingsFragment extends Fragment {
+import java.util.Objects;
 
-    private SavingsViewModel mViewModel;
+public class SavingsFragment extends Fragment implements SavingCallBack {
 
-    public static SavingsFragment newInstance() {
-        return new SavingsFragment();
-    }
+
+    private SavingsViewModel viewModel;
+    private FragmentSavingsBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        SavingsDialog savingsDialog = new SavingsDialog(getActivity(), false);
-        savingsDialog.show();
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_savings, container, false);
+        viewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
+        binding.setLifecycleOwner(getActivity());
+        binding.setViewModel(viewModel);
+        viewModel.setSavingCallBack(this);
 
-        return inflater.inflate(R.layout.fragment_savings, container, false);
+        return binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SavingsViewModel.class);
-        // TODO: Use the ViewModel
+    public void onWithdrawSuccessful() {
+        Utils.success(getContext(), "Withdrawal successful");
     }
 
+    @Override
+    public void onWithdrawFailure(Boolean loginFailure, String message) {
+        if (loginFailure) {
+            Objects.requireNonNull(getActivity()).finish();
+            startActivity(new Intent(getContext(), LaunchingActivity.class));
+        }
+        Utils.error(getContext(), message);
+
+    }
+
+    @Override
+    public void onDepositSuccessful() {
+        Utils.success(getContext(), "Deposit successful");
+    }
+
+    @Override
+    public void onDepositFailure(Boolean loginFailure, String message) {
+        if (loginFailure) {
+            Objects.requireNonNull(getActivity()).finish();
+            startActivity(new Intent(getContext(), LaunchingActivity.class));
+        }
+        Utils.error(getContext(), message);
+
+    }
 }

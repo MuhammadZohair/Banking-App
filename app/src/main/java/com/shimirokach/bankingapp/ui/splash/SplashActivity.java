@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.ui.home.HomeActivity;
 import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
+import com.shimirokach.bankingapp.ui.main.MainActivity;
 
-public class SplashActivity extends AppCompatActivity implements SplashNavigator {
+public class SplashActivity extends AppCompatActivity implements SplashCallBack {
 
     private SplashViewModel viewModel;
 
@@ -20,13 +20,13 @@ public class SplashActivity extends AppCompatActivity implements SplashNavigator
         setContentView(R.layout.activity_splash);
 
         viewModel = new ViewModelProvider(this).get(SplashViewModel.class);
-        viewModel.setSplashNavigator(this);
+        viewModel.setSplashCallBack(this);
     }
 
     @Override
     public void onLoaded(boolean isLogin) {
         if (isLogin)
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         else
             startActivity(new Intent(getApplicationContext(), LaunchingActivity.class));
 

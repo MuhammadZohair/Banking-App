@@ -1,18 +1,18 @@
 package com.shimirokach.bankingapp.ui.auth;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.databinding.ActivityRegisterBinding;
-import com.shimirokach.bankingapp.ui.home.HomeActivity;
+import com.shimirokach.bankingapp.ui.main.MainActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
-public class RegisterActivity extends AppCompatActivity implements AuthListener {
+public class RegisterActivity extends AppCompatActivity implements AuthCallBack {
 
     private AuthViewModel viewModel;
     private ActivityRegisterBinding binding;
@@ -27,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity implements AuthListener 
         binding.setViewmodel(viewModel);
         binding.setLifecycleOwner(this);
 
-        viewModel.setAuthListener(this);
+        viewModel.setAuthCallBack(this);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements AuthListener 
         binding.setIsLoading(false);
         Utils.success(getApplicationContext(), "Account created successfully");
         finish();
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     @Override

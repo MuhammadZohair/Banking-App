@@ -1,8 +1,6 @@
 package com.shimirokach.bankingapp.ui.launch;
 
-import android.view.View;
-
-public interface LaunchPageNavigator {
+public interface LaunchPageCallBack {
 
     void onLogin();
     void onRegistration();

@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.bumptech.glide.util.Util;
 import com.shimirokach.bankingapp.data.Repository;
 import com.shimirokach.bankingapp.data.local.entities.User;
 import com.shimirokach.bankingapp.utils.SessionManager;
@@ -19,7 +18,7 @@ public class AuthViewModel extends AndroidViewModel {
     private static final String TAG = "AuthViewModel";
 
     private Repository repository;
-    private AuthListener authListener;
+    private AuthCallBack authCallBack;
 
     public String emailAddress = "";
     public String password = "";
@@ -31,24 +30,24 @@ public class AuthViewModel extends AndroidViewModel {
         repository = new Repository(application);
     }
 
-    void setAuthListener(AuthListener authListener) {
-        this.authListener = authListener;
+    void setAuthCallBack(AuthCallBack authCallBack) {
+        this.authCallBack = authCallBack;
     }
 
     public void onLoginButtonClick(View view) {
-        authListener.onStarted();
+        authCallBack.onStarted();
 
         if (emailAddress.isEmpty() || password.isEmpty()) {
-            authListener.onFailure("Fields cannot be empty");
+            authCallBack.onFailure("Fields cannot be empty");
             return;
         }
 
         if (!Utils.validateEmail(emailAddress)) {
-            authListener.onFailure("Invalid Email");
+            authCallBack.onFailure("Invalid Email");
             return;
         }
         if (!Utils.validatePassword(password)) {
-            authListener.onFailure("Invalid Password");
+            authCallBack.onFailure("Invalid Password");
             return;
         }
 
@@ -58,56 +57,59 @@ public class AuthViewModel extends AndroidViewModel {
                 user.setToken(Utils.generateToken());
                 SessionManager.getInstance().setToken(user.getToken());
                 repository.updateUser(user);
-                authListener.onSuccess();
+                authCallBack.onSuccess();
             } else {
-                authListener.onFailure("Incorrect email or password");
+                authCallBack.onFailure("Incorrect email or password");
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public void onRegisterButtonClick(View view) {
 
-        authListener.onStarted();
+        authCallBack.onStarted();
 
         if (emailAddress.isEmpty() || password.isEmpty()
                 || confirmPassword.isEmpty() || fullName.isEmpty()) {
-            authListener.onFailure("Fields cannot be empty");
+            authCallBack.onFailure("Fields cannot be empty");
             return;
         }
 
         if (!Utils.validateEmail(emailAddress)) {
-            authListener.onFailure("Invalid Email");
+            authCallBack.onFailure("Invalid Email");
             return;
         }
         if (!Utils.validatePassword(password)) {
-            authListener.onFailure("Invalid Password");
+            authCallBack.onFailure("Invalid Password");
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            authListener.onFailure("Password doesn't match");
+            authCallBack.onFailure("Password doesn't match");
             return;
         }
 
         try {
-            if(repository.isUserPresent(emailAddress)){
-                authListener.onFailure("Email already exist");
+            if (repository.isUserPresent(emailAddress)) {
+                authCallBack.onFailure("Email already exist");
                 return;
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-            authListener.onFailure("Error occurred, Please try again");
+            authCallBack.onFailure("Error occurred, Please try again");
             return;
         }
 
-        String token =  Utils.generateToken();
-        repository.insertUser(new User(emailAddress, password, fullName, 0.0, token));
+        String token = Utils.generateToken();
+        repository.insertUser(new User(emailAddress, password, fullName, 0.0, 0.0, token));
         SessionManager.getInstance().setToken(token);
 
-        authListener.onSuccess();
+        authCallBack.onSuccess();
 
+    }
+
+    public void onBackPressed() {
+        authCallBack.onBackPressed();
     }
 }
