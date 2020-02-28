@@ -18,13 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.data.local.entities.Transactions;
 import com.shimirokach.bankingapp.databinding.FragmentHomeBinding;
-import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.ui.profile.EditProfileActivity;
-import com.shimirokach.bankingapp.utils.SessionManager;
-import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The type Home fragment.
@@ -60,15 +56,6 @@ public class HomeFragment extends Fragment implements HomeCallBack, Observer<Lis
     @Override
     public void onEditClicked(View view) {
         startActivity(new Intent(getContext(), EditProfileActivity.class));
-    }
-
-    @Override
-    public void onLogoutClicked(View view) {
-        Objects.requireNonNull(getActivity()).finish();
-        SessionManager.getInstance().expireToken();
-        Utils.success(getContext(), "Logged out");
-        startActivity(new Intent(getContext(), LaunchingActivity.class));
-
     }
 
     @Override

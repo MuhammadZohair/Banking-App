@@ -31,7 +31,6 @@
         android:background="@drawable/dashboard_background"
         android:orientation="horizontal"
         android:paddingStart="@dimen/default_padding"
-        android:paddingTop="@dimen/_8sdp"
         android:paddingEnd="@dimen/_16sdp"
         android:paddingBottom="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,65 +53,22 @@
 
             <ImageView
                 android:id="@+id/iv_avatar"
-                android:layout_width="@dimen/_75sdp"
-                android:layout_height="@dimen/_75sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_125sdp"
                 android:src="@drawable/ic_user" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingStart="@dimen/_5sdp"
-                android:src="@drawable/ic_active" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:shadowRadius="2"
-                android:text="@{viewmodel.fullName}"
-                android:textColor="@color/colorText"
-                android:textSize="@dimen/normal" />
-
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_normal"
-                android:padding="@dimen/_2sdp"
-                android:shadowRadius="2"
-                android:text="@{viewmodel.emailAddress}"
-                android:textColor="@color/colorText"
-                android:textSize="@dimen/small" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout8"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_edit"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/linearLayout5"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+            app:layout_constraintTop_toTopOf="@+id/linearLayout5">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -135,30 +91,17 @@
             android:id="@+id/iv_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="8dp"
             android:onClick="@{(v) -> viewmodel.onEditClicked(v)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout8"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:onClick="@{(v) -> viewmodel.onLogoutClicked(v)}"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout7"
-        app:srcCompat="@drawable/ic_logout" />
-
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

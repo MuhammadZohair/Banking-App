@@ -13,11 +13,4 @@ public interface HomeCallBack {
      * @param view the view
      */
     void onEditClicked(View view);
-
-    /**
-     * On logout clicked.
-     *
-     * @param view the view
-     */
-    void onLogoutClicked(View view);
 }

@@ -22,14 +22,6 @@ import java.util.concurrent.ExecutionException;
 public class HomeViewModel extends AndroidViewModel {
 
     /**
-     * The Full name.
-     */
-    public String fullName = "";
-    /**
-     * The Email address.
-     */
-    public String emailAddress = "";
-    /**
      * The Balance.
      */
     public Double balance = 0D;
@@ -56,8 +48,6 @@ public class HomeViewModel extends AndroidViewModel {
             user = repository.getUserByToken(SessionManager.getInstance().getToken());
             allTransactions = repository.getAllTransactions();
 
-            fullName = user.getFullName();
-            emailAddress = user.getEmail();
             balance = user.getBalance();
             currentDate = Utils.getCurrentDate();
 
@@ -83,15 +73,6 @@ public class HomeViewModel extends AndroidViewModel {
      */
     public void onEditClicked(View view) {
         homeCallBack.onEditClicked(view);
-    }
-
-    /**
-     * On logout clicked.
-     *
-     * @param view the view
-     */
-    public void onLogoutClicked(View view) {
-        homeCallBack.onLogoutClicked(view);
     }
 
     /**
