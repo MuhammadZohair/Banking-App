@@ -59,7 +59,6 @@ public class HomeFragment extends Fragment implements HomeCallBack, Observer<Lis
 
     @Override
     public void onEditClicked(View view) {
-
         startActivity(new Intent(getContext(), EditProfileActivity.class));
     }
 
