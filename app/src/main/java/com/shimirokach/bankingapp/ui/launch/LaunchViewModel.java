@@ -6,6 +6,13 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.shimirokach.bankingapp.data.Repository;
+import com.shimirokach.bankingapp.data.local.entities.User;
+import com.shimirokach.bankingapp.utils.SessionManager;
+import com.shimirokach.bankingapp.utils.Utils;
+
+import java.util.concurrent.ExecutionException;
+
 /**
  * The type Launch view model.
  */
@@ -15,6 +22,20 @@ public class LaunchViewModel extends AndroidViewModel {
 
     private LaunchPageCallBack launchPageCallBack = null;
 
+    /**
+     * The Email address.
+     */
+    public String emailAddress = "test@mail.com";
+    /**
+     * The Password.
+     */
+    public String password = "qwe123";
+    /**
+     * The Full name.
+     */
+    public String fullName = "Test User";
+    private Repository repository;
+
 
     /**
      * Instantiates a new Launch view model.
@@ -23,6 +44,7 @@ public class LaunchViewModel extends AndroidViewModel {
      */
     public LaunchViewModel(@NonNull Application application) {
         super(application);
+        repository = new Repository(application);
     }
 
     /**
@@ -35,20 +57,27 @@ public class LaunchViewModel extends AndroidViewModel {
     }
 
     /**
-     * On login button click.
+     * On start button pressed.
      *
      * @param view the view
      */
-    public void onLoginButtonClick(View view) {
-        launchPageCallBack.onLogin();
+    public void onStartButtonPressed(View view) {
+        try {
+            User user = repository.loginUser(emailAddress, password);
+            if (user != null) {
+                user.setToken(Utils.generateToken());
+                SessionManager.getInstance().setToken(user.getToken());
+                repository.updateUser(user);
+                launchPageCallBack.onLogin();
+            } else {
+                String token = Utils.generateToken();
+                repository.insertUser(new User(emailAddress, password, fullName, 0.0, 0.0, token));
+                SessionManager.getInstance().setToken(token);
+                launchPageCallBack.onLogin();
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * On register button click.
-     *
-     * @param view the view
-     */
-    public void onRegisterButtonClick(View view) {
-        launchPageCallBack.onRegistration();
-    }
 }

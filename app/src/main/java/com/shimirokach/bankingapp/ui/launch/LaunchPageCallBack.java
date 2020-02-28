@@ -9,9 +9,4 @@ public interface LaunchPageCallBack {
      * On login.
      */
     void onLogin();
-
-    /**
-     * On registration.
-     */
-    void onRegistration();
 }

@@ -9,21 +9,23 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.databinding.ActivityLandingBinding;
-import com.shimirokach.bankingapp.ui.auth.LoginActivity;
-import com.shimirokach.bankingapp.ui.auth.RegisterActivity;
+import com.shimirokach.bankingapp.ui.main.MainActivity;
 
 /**
  * The type Launching activity.
  */
 public class LaunchingActivity extends AppCompatActivity implements LaunchPageCallBack {
 
+    private ActivityLandingBinding binding;
+    private LaunchViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityLandingBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_landing);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_landing);
 
-        LaunchViewModel viewModel = new ViewModelProvider(this).get(LaunchViewModel.class);
+        viewModel = new ViewModelProvider(this).get(LaunchViewModel.class);
         binding.setViewmodel(viewModel);
         binding.setLifecycleOwner(this);
 
@@ -32,11 +34,6 @@ public class LaunchingActivity extends AppCompatActivity implements LaunchPageCa
 
     @Override
     public void onLogin() {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-    }
-
-    @Override
-    public void onRegistration() {
-        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 }

@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.databinding.ActivityEditProfileBinding;
-import com.shimirokach.bankingapp.ui.auth.LoginActivity;
 import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
@@ -41,7 +40,7 @@ public class EditProfileActivity extends AppCompatActivity implements ProfileCal
     public void onUpdateSuccessful() {
         Utils.success(getApplicationContext(), "Profile updated successfully, please login again");
         finish();
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, LaunchingActivity.class));
     }
 
     @Override

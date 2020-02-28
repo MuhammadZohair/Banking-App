@@ -34,6 +34,7 @@
     <string name="old_password">Old password</string>
     <string name="new_password">New Password</string>
     <string name="update">Update</string>
+    <string name="start">Start</string>
 
     <string-array name="demo_array">
         <item>User 1</item>

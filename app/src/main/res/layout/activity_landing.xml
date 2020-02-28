@@ -92,22 +92,11 @@
                 android:layout_margin="@dimen/default_padding"
                 android:background="@drawable/button_white"
                 android:fontFamily="@font/poppins_normal"
-                android:text="@string/login"
-                android:onClick="@{(v) -> viewmodel.onLoginButtonClick(v)}"
+                android:onClick="@{(v) -> viewmodel.onStartButtonPressed(v)}"
+                android:text="@string/start"
                 android:textAllCaps="false"
                 android:textSize="@dimen/normal" />
 
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_padding"
-                android:background="@drawable/button_trans"
-                android:fontFamily="@font/poppins_normal"
-                android:text="@string/register"
-                android:onClick="@{(v) -> viewmodel.onRegisterButtonClick(v)}"
-                android:textAllCaps="false"
-                android:textSize="@dimen/normal" />
         </LinearLayout>
 
         <TextView
