@@ -23,7 +23,6 @@ public class Repository {
     private UserDao userDao;
     private TransactionsDao transactionsDao;
 
-    private LiveData<List<User>> allUsers;
     private LiveData<List<Transactions>> allTransactions;
 
     /**
@@ -36,7 +35,7 @@ public class Repository {
         userDao = database.userDao();
         transactionsDao = database.transactionsDao();
 
-        allUsers = userDao.getAll();
+        LiveData<List<User>> allUsers = userDao.getAll();
         allTransactions = transactionsDao.getAllTransactions();
     }
 
@@ -56,40 +55,6 @@ public class Repository {
      */
     public void updateUser(User user) {
         new UserAsyncTask(userDao, Utils.UPDATE).execute(user);
-    }
-
-    /**
-     * Delete user.
-     *
-     * @param user the user
-     */
-    public void deleteUser(User user) {
-        new UserAsyncTask(userDao, Utils.DELETE).execute(user);
-    }
-
-    /**
-     * Login user user.
-     *
-     * @param email    the email
-     * @param password the password
-     * @return the user
-     * @throws ExecutionException   the execution exception
-     * @throws InterruptedException the interrupted exception
-     */
-    public User loginUser(String email, String password) throws ExecutionException, InterruptedException {
-        return new UserLoginAsyncTask(userDao).execute(email, password).get();
-    }
-
-    /**
-     * Is user present boolean.
-     *
-     * @param email the email
-     * @return the boolean
-     * @throws ExecutionException   the execution exception
-     * @throws InterruptedException the interrupted exception
-     */
-    public Boolean isUserPresent(String email) throws ExecutionException, InterruptedException {
-        return new UserPresentAsyncTask(userDao).execute(email).get();
     }
 
     /**
@@ -116,17 +81,6 @@ public class Repository {
         return new UserGetByTokenAsyncTask(userDao).execute(token).get();
     }
 
-
-    /**
-     * Gets all users.
-     *
-     * @return the all users
-     */
-    public LiveData<List<User>> getAllUsers() {
-        return allUsers;
-    }
-
-
     /**
      * Insert transaction.
      *
@@ -134,24 +88,6 @@ public class Repository {
      */
     public void insertTransaction(Transactions transaction) {
         new TransactionAsyncTask(transactionsDao, Utils.INSERT).execute(transaction);
-    }
-
-    /**
-     * Update transaction.
-     *
-     * @param transaction the transaction
-     */
-    public void updateTransaction(Transactions transaction) {
-        new TransactionAsyncTask(transactionsDao, Utils.UPDATE).execute(transaction);
-    }
-
-    /**
-     * Delete transaction.
-     *
-     * @param transaction the transaction
-     */
-    public void deleteTransaction(Transactions transaction) {
-        new TransactionAsyncTask(transactionsDao, Utils.DELETE).execute(transaction);
     }
 
     /**
@@ -193,19 +129,6 @@ public class Repository {
         }
     }
 
-    private static class UserLoginAsyncTask extends AsyncTask<String, Void, User> {
-        private UserDao userDao;
-
-        private UserLoginAsyncTask(UserDao userDao) {
-            this.userDao = userDao;
-        }
-
-        @Override
-        protected User doInBackground(String... strings) {
-            return userDao.login(strings[0], strings[1]);
-        }
-    }
-
     private static class UserGetByIdAsyncTask extends AsyncTask<Long, Void, User> {
         private UserDao userDao;
 
@@ -229,19 +152,6 @@ public class Repository {
         @Override
         protected User doInBackground(String... strings) {
             return userDao.getByToken(strings[0]);
-        }
-    }
-
-    private static class UserPresentAsyncTask extends AsyncTask<String, Void, Boolean> {
-        private UserDao userDao;
-
-        private UserPresentAsyncTask(UserDao userDao) {
-            this.userDao = userDao;
-        }
-
-        @Override
-        protected Boolean doInBackground(String... strings) {
-            return userDao.isRegistered(strings[0]) != null;
         }
     }
 

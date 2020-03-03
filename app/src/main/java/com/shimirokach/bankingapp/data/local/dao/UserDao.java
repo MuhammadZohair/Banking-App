@@ -56,25 +56,6 @@ public interface UserDao {
     LiveData<List<User>> getAll();
 
     /**
-     * Login user.
-     *
-     * @param email    the email
-     * @param password the password
-     * @return the user
-     */
-    @Query("SELECT * FROM users_table WHERE email_address = :email AND password = :password")
-    User login(String email, String password);
-
-    /**
-     * Is registered user.
-     *
-     * @param email the email
-     * @return the user
-     */
-    @Query("SELECT * FROM users_table WHERE email_address = :email")
-    User isRegistered(String email);
-
-    /**
      * Gets by id.
      *
      * @param id the id

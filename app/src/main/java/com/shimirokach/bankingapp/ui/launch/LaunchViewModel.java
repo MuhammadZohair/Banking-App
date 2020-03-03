@@ -1,7 +1,6 @@
 package com.shimirokach.bankingapp.ui.launch;
 
 import android.app.Application;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -18,22 +17,8 @@ import java.util.concurrent.ExecutionException;
  */
 public class LaunchViewModel extends AndroidViewModel {
 
-    private static final String TAG = "LaunchViewModel";
-
     private LaunchPageCallBack launchPageCallBack = null;
 
-    /**
-     * The Email address.
-     */
-    public String emailAddress = "test@mail.com";
-    /**
-     * The Password.
-     */
-    public String password = "qwe123";
-    /**
-     * The Full name.
-     */
-    public String fullName = "Test User";
     private Repository repository;
 
 
@@ -44,6 +29,7 @@ public class LaunchViewModel extends AndroidViewModel {
      */
     public LaunchViewModel(@NonNull Application application) {
         super(application);
+        SessionManager.initializeInstance(application);
         repository = new Repository(application);
     }
 
@@ -58,12 +44,10 @@ public class LaunchViewModel extends AndroidViewModel {
 
     /**
      * On start button pressed.
-     *
-     * @param view the view
      */
-    public void onStartButtonPressed(View view) {
+    public void onStartButtonPressed() {
         try {
-            User user = repository.loginUser(emailAddress, password);
+            User user = repository.getUserById(1L);
             if (user != null) {
                 user.setToken(Utils.generateToken());
                 SessionManager.getInstance().setToken(user.getToken());
@@ -71,7 +55,7 @@ public class LaunchViewModel extends AndroidViewModel {
                 launchPageCallBack.onLogin();
             } else {
                 String token = Utils.generateToken();
-                repository.insertUser(new User(emailAddress, password, fullName, 0.0, 0.0, token));
+                repository.insertUser(new User(0.0, 0.0, token));
                 SessionManager.getInstance().setToken(token);
                 launchPageCallBack.onLogin();
             }

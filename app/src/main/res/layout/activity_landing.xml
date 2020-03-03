@@ -92,7 +92,7 @@
                 android:layout_margin="@dimen/default_padding"
                 android:background="@drawable/button_white"
                 android:fontFamily="@font/poppins_normal"
-                android:onClick="@{(v) -> viewmodel.onStartButtonPressed(v)}"
+                android:onClick="@{() -> viewmodel.onStartButtonPressed()}"
                 android:text="@string/start"
                 android:textAllCaps="false"
                 android:textSize="@dimen/normal" />

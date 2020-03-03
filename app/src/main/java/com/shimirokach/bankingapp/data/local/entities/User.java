@@ -13,16 +13,6 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "user_id")
     private Long userId;
-
-    @ColumnInfo(name = "email_address")
-    private String email;
-
-    @ColumnInfo(name = "password")
-    private String password;
-
-    @ColumnInfo(name = "full_name")
-    private String fullName;
-
     @ColumnInfo(name = "balance")
     private Double balance;
 
@@ -35,17 +25,11 @@ public class User {
     /**
      * Instantiates a new User.
      *
-     * @param email    the email
-     * @param password the password
-     * @param fullName the full name
-     * @param balance  the balance
-     * @param savings  the savings
-     * @param token    the token
+     * @param balance the balance
+     * @param savings the savings
+     * @param token   the token
      */
-    public User(String email, String password, String fullName, Double balance, Double savings, String token) {
-        this.email = email;
-        this.password = password;
-        this.fullName = fullName;
+    public User(Double balance, Double savings, String token) {
         this.balance = balance;
         this.savings = savings;
         this.token = token;
@@ -67,60 +51,6 @@ public class User {
      */
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    /**
-     * Gets email.
-     *
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Sets email.
-     *
-     * @param email the email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * Gets password.
-     *
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Sets password.
-     *
-     * @param password the password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Gets full name.
-     *
-     * @return the full name
-     */
-    public String getFullName() {
-        return fullName;
-    }
-
-    /**
-     * Sets full name.
-     *
-     * @param fullName the full name
-     */
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     /**
@@ -181,9 +111,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
                 ", balance=" + balance +
                 ", savings=" + savings +
                 ", token='" + token + '\'' +

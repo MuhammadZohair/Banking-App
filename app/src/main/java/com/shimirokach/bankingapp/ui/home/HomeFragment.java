@@ -1,6 +1,5 @@
 package com.shimirokach.bankingapp.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,20 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shimirokach.bankingapp.R;
 import com.shimirokach.bankingapp.data.local.entities.Transactions;
 import com.shimirokach.bankingapp.databinding.FragmentHomeBinding;
-import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
-import com.shimirokach.bankingapp.ui.profile.EditProfileActivity;
-import com.shimirokach.bankingapp.utils.SessionManager;
-import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The type Home fragment.
  */
-public class HomeFragment extends Fragment implements HomeCallBack, Observer<List<Transactions>> {
+public class HomeFragment extends Fragment implements Observer<List<Transactions>> {
 
-    private HomeViewModel viewModel;
     private FragmentHomeBinding binding;
 
     private TransactionAdapter transactionAdapter;
@@ -41,10 +34,9 @@ public class HomeFragment extends Fragment implements HomeCallBack, Observer<Lis
                              @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        HomeViewModel viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setLifecycleOwner(getActivity());
         binding.setViewmodel(viewModel);
-        viewModel.setHomeCallBack(this);
         viewModel.getAllTransactions().observe(getViewLifecycleOwner(), this);
 
         View v = binding.getRoot();
@@ -55,20 +47,6 @@ public class HomeFragment extends Fragment implements HomeCallBack, Observer<Lis
         recyclerView.setAdapter(transactionAdapter);
 
         return v;
-    }
-
-    @Override
-    public void onEditClicked(View view) {
-        startActivity(new Intent(getContext(), EditProfileActivity.class));
-    }
-
-    @Override
-    public void onLogoutClicked(View view) {
-        Objects.requireNonNull(getActivity()).finish();
-        SessionManager.getInstance().expireToken();
-        Utils.success(getContext(), "Logged out");
-        startActivity(new Intent(getContext(), LaunchingActivity.class));
-
     }
 
     @Override

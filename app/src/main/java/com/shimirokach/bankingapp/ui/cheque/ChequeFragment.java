@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.databinding.FragmentChequeBinding;
 import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
@@ -24,15 +23,14 @@ import java.util.Objects;
  */
 public class ChequeFragment extends Fragment implements ChequeCallBack {
 
-    private ChequeViewModel viewModel;
-    private FragmentChequeBinding binding;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cheque, container, false);
-        viewModel = new ViewModelProvider(this).get(ChequeViewModel.class);
+        com.shimirokach.bankingapp.databinding.FragmentChequeBinding binding
+                = DataBindingUtil.inflate(inflater, R.layout.fragment_cheque, container, false);
+
+        ChequeViewModel viewModel = new ViewModelProvider(this).get(ChequeViewModel.class);
         binding.setLifecycleOwner(getActivity());
         binding.setViewModel(viewModel);
 

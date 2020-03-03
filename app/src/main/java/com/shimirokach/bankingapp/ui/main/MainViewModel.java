@@ -23,8 +23,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainViewModel extends AndroidViewModel {
 
-    private static final String TAG = "MainViewModel";
-
     private MainCallBack mainCallBack;
 
     /**

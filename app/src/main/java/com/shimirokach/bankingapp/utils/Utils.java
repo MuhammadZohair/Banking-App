@@ -4,9 +4,6 @@ import android.content.Context;
 
 import org.joda.time.DateTime;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import es.dmoral.toasty.Toasty;
 
 /**
@@ -40,59 +37,31 @@ public class Utils {
      */
     public static final int DELETE_ALL = 55;
 
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    private static final Pattern VALID_PASSWORD_REGEX =
-            Pattern.compile("^(?=.*[0-9])(?=.*[a-z]).{6,}$", Pattern.CASE_INSENSITIVE);
-
-    /**
-     * Validate email boolean.
-     *
-     * @param emailStr the email str
-     * @return the boolean
-     */
-    public static boolean validateEmail(CharSequence emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
-    }
-
-    /**
-     * Validate password boolean.
-     *
-     * @param passwordStr the password str
-     * @return the boolean
-     */
-    public static boolean validatePassword(CharSequence passwordStr) {
-        Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
-        return matcher.find();
-    }
-
     /**
      * Generate token string.
      *
      * @return the string
      */
     public static String generateToken() {
-        String charstring = "abcdefghijklmnopqrstuvwxyz0123456789";
-        String randalphanum = "";
-        double randroll;
-        String randchar;
+        String charString = "abcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder randomAlpha = new StringBuilder();
+        double randomRoll;
+        String randomChar;
         for
         (double i = 0; i < 150; i++) {
-            randroll = Math.random();
-            randchar = "";
+            randomRoll = Math.random();
+            randomChar = "";
             for
             (int j = 1; j <= 35; j++) {
                 if
-                (randroll <= (1.0 / 36.0 * j)) {
-                    randchar = Character.toString(charstring.charAt(j - 1));
+                (randomRoll <= (1.0 / 36.0 * j)) {
+                    randomChar = Character.toString(charString.charAt(j - 1));
                     break;
                 }
             }
-            randalphanum += randchar;
+            randomAlpha.append(randomChar);
         }
-        return randalphanum;
+        return randomAlpha.toString();
     }
 
     /**
@@ -113,26 +82,6 @@ public class Utils {
      */
     public static void error(Context context, String message) {
         Toasty.error(context, message, Toasty.LENGTH_SHORT, true).show();
-    }
-
-    /**
-     * Info.
-     *
-     * @param context the context
-     * @param message the message
-     */
-    public static void info(Context context, String message) {
-        Toasty.info(context, message, Toasty.LENGTH_SHORT, true).show();
-    }
-
-    /**
-     * Warning.
-     *
-     * @param context the context
-     * @param message the message
-     */
-    public static void warning(Context context, String message) {
-        Toasty.warning(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
     /**
@@ -166,9 +115,11 @@ public class Utils {
                 break;
         }
 
-        stringBuilder.append(DateTime.now().getDayOfMonth() + "/" +
-                DateTime.now().getMonthOfYear() + "/" +
-                DateTime.now().getYear());
+        stringBuilder.append(DateTime.now().getDayOfMonth())
+                .append("/")
+                .append(DateTime.now().getMonthOfYear())
+                .append("/")
+                .append(DateTime.now().getYear());
 
         return stringBuilder.toString();
     }

@@ -1,7 +1,6 @@
 package com.shimirokach.bankingapp.ui.home;
 
 import android.app.Application;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -22,14 +21,6 @@ import java.util.concurrent.ExecutionException;
 public class HomeViewModel extends AndroidViewModel {
 
     /**
-     * The Full name.
-     */
-    public String fullName = "";
-    /**
-     * The Email address.
-     */
-    public String emailAddress = "";
-    /**
      * The Balance.
      */
     public Double balance = 0D;
@@ -37,9 +28,6 @@ public class HomeViewModel extends AndroidViewModel {
      * The Current date.
      */
     public String currentDate = "";
-    private HomeCallBack homeCallBack;
-    private Repository repository;
-    private User user;
 
     private LiveData<List<Transactions>> allTransactions;
 
@@ -51,13 +39,11 @@ public class HomeViewModel extends AndroidViewModel {
     public HomeViewModel(@NonNull Application application) {
         super(application);
 
-        repository = new Repository(application);
+        Repository repository = new Repository(application);
         try {
-            user = repository.getUserByToken(SessionManager.getInstance().getToken());
+            User user = repository.getUserByToken(SessionManager.getInstance().getToken());
             allTransactions = repository.getAllTransactions();
 
-            fullName = user.getFullName();
-            emailAddress = user.getEmail();
             balance = user.getBalance();
             currentDate = Utils.getCurrentDate();
 
@@ -68,38 +54,11 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     /**
-     * Sets home call back.
-     *
-     * @param homeCallBack the home call back
-     */
-    void setHomeCallBack(HomeCallBack homeCallBack) {
-        this.homeCallBack = homeCallBack;
-    }
-
-    /**
-     * On edit clicked.
-     *
-     * @param view the view
-     */
-    public void onEditClicked(View view) {
-        homeCallBack.onEditClicked(view);
-    }
-
-    /**
-     * On logout clicked.
-     *
-     * @param view the view
-     */
-    public void onLogoutClicked(View view) {
-        homeCallBack.onLogoutClicked(view);
-    }
-
-    /**
      * Gets all transactions.
      *
      * @return the all transactions
      */
-    public LiveData<List<Transactions>> getAllTransactions() {
+    LiveData<List<Transactions>> getAllTransactions() {
         return allTransactions;
     }
 }

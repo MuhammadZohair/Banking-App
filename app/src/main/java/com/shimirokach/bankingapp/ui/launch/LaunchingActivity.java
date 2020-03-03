@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.databinding.ActivityLandingBinding;
 import com.shimirokach.bankingapp.ui.main.MainActivity;
 
 /**
@@ -16,16 +15,14 @@ import com.shimirokach.bankingapp.ui.main.MainActivity;
  */
 public class LaunchingActivity extends AppCompatActivity implements LaunchPageCallBack {
 
-    private ActivityLandingBinding binding;
-    private LaunchViewModel viewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_landing);
+        com.shimirokach.bankingapp.databinding.ActivityLandingBinding binding
+                = DataBindingUtil.setContentView(this, R.layout.activity_landing);
 
-        viewModel = new ViewModelProvider(this).get(LaunchViewModel.class);
+        LaunchViewModel viewModel = new ViewModelProvider(this).get(LaunchViewModel.class);
         binding.setViewmodel(viewModel);
         binding.setLifecycleOwner(this);
 

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.databinding.FragmentTransferBinding;
 import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
@@ -24,15 +23,13 @@ import java.util.Objects;
  */
 public class TransferFragment extends Fragment implements TransferCallBack {
 
-    private TransferViewModel viewModel;
-    private FragmentTransferBinding binding;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_transfer, container, false);
-        viewModel = new ViewModelProvider(this).get(TransferViewModel.class);
+        com.shimirokach.bankingapp.databinding.FragmentTransferBinding binding
+                = DataBindingUtil.inflate(inflater, R.layout.fragment_transfer, container, false);
+        TransferViewModel viewModel = new ViewModelProvider(this).get(TransferViewModel.class);
         binding.setLifecycleOwner(getActivity());
         binding.setViewModel(viewModel);
         viewModel.setTransferCallBack(this);

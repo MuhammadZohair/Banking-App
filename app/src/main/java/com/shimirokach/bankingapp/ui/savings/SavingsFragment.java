@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.databinding.FragmentSavingsBinding;
 import com.shimirokach.bankingapp.ui.launch.LaunchingActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
@@ -25,15 +24,13 @@ import java.util.Objects;
 public class SavingsFragment extends Fragment implements SavingCallBack {
 
 
-    private SavingsViewModel viewModel;
-    private FragmentSavingsBinding binding;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_savings, container, false);
-        viewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
+        com.shimirokach.bankingapp.databinding.FragmentSavingsBinding binding
+                = DataBindingUtil.inflate(inflater, R.layout.fragment_savings, container, false);
+        SavingsViewModel viewModel = new ViewModelProvider(this).get(SavingsViewModel.class);
         binding.setLifecycleOwner(getActivity());
         binding.setViewModel(viewModel);
         viewModel.setSavingCallBack(this);

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shimirokach.bankingapp.R;
-import com.shimirokach.bankingapp.databinding.ActivityMainBinding;
 import com.shimirokach.bankingapp.ui.cheque.ChequeFragment;
 import com.shimirokach.bankingapp.ui.home.HomeFragment;
 import com.shimirokach.bankingapp.ui.savings.SavingsFragment;
@@ -19,16 +18,14 @@ import com.shimirokach.bankingapp.ui.transfer.TransferFragment;
  */
 public class MainActivity extends AppCompatActivity implements MainCallBack {
 
-    private MainViewModel viewModel;
-    private ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        com.shimirokach.bankingapp.databinding.ActivityMainBinding binding
+                = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
@@ -55,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements MainCallBack {
             case R.id.action_savings:
                 loadFragment(new SavingsFragment());
                 break;
-
         }
     }
 

@@ -69,7 +69,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     /**
      * The type View holder.
      */
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         /**
          * The Date text view.
          */
