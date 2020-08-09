@@ -19,9 +19,6 @@ import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.Objects;
 
-/**
- * The type Transfer fragment.
- */
 public class TransferFragment extends Fragment implements TransferCallBack {
 
     private TransferViewModel viewModel;

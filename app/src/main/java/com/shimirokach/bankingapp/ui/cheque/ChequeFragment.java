@@ -19,9 +19,6 @@ import com.shimirokach.bankingapp.utils.Utils;
 
 import java.util.Objects;
 
-/**
- * The type Cheque fragment.
- */
 public class ChequeFragment extends Fragment implements ChequeCallBack {
 
     private ChequeViewModel viewModel;

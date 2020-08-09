@@ -16,26 +16,11 @@ import com.shimirokach.bankingapp.utils.Utils;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * The type Home view model.
- */
 public class HomeViewModel extends AndroidViewModel {
 
-    /**
-     * The Full name.
-     */
     public String fullName = "";
-    /**
-     * The Email address.
-     */
     public String emailAddress = "";
-    /**
-     * The Balance.
-     */
     public Double balance = 0D;
-    /**
-     * The Current date.
-     */
     public String currentDate = "";
     private HomeCallBack homeCallBack;
     private Repository repository;
@@ -43,11 +28,6 @@ public class HomeViewModel extends AndroidViewModel {
 
     private LiveData<List<Transactions>> allTransactions;
 
-    /**
-     * Instantiates a new Home view model.
-     *
-     * @param application the application
-     */
     public HomeViewModel(@NonNull Application application) {
         super(application);
 
@@ -67,38 +47,18 @@ public class HomeViewModel extends AndroidViewModel {
 
     }
 
-    /**
-     * Sets home call back.
-     *
-     * @param homeCallBack the home call back
-     */
     void setHomeCallBack(HomeCallBack homeCallBack) {
         this.homeCallBack = homeCallBack;
     }
 
-    /**
-     * On edit clicked.
-     *
-     * @param view the view
-     */
     public void onEditClicked(View view) {
         homeCallBack.onEditClicked(view);
     }
 
-    /**
-     * On logout clicked.
-     *
-     * @param view the view
-     */
     public void onLogoutClicked(View view) {
         homeCallBack.onLogoutClicked(view);
     }
 
-    /**
-     * Gets all transactions.
-     *
-     * @return the all transactions
-     */
     public LiveData<List<Transactions>> getAllTransactions() {
         return allTransactions;
     }

@@ -12,9 +12,6 @@ import com.shimirokach.bankingapp.databinding.ActivityLoginBinding;
 import com.shimirokach.bankingapp.ui.main.MainActivity;
 import com.shimirokach.bankingapp.utils.Utils;
 
-/**
- * The type Login activity.
- */
 public class LoginActivity extends AppCompatActivity implements AuthCallBack {
 
     private AuthViewModel viewModel;

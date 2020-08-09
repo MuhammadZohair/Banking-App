@@ -26,9 +26,6 @@ import com.shimirokach.bankingapp.utils.Utils;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * The type Home fragment.
- */
 public class HomeFragment extends Fragment implements HomeCallBack, Observer<List<Transactions>> {
 
     private HomeViewModel viewModel;
@@ -45,6 +42,7 @@ public class HomeFragment extends Fragment implements HomeCallBack, Observer<Lis
         binding.setLifecycleOwner(getActivity());
         binding.setViewmodel(viewModel);
         viewModel.setHomeCallBack(this);
+
         viewModel.getAllTransactions().observe(getViewLifecycleOwner(), this);
 
         View v = binding.getRoot();

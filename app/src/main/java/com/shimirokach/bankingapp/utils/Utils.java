@@ -9,35 +9,14 @@ import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 
-/**
- * The type Utils.
- */
 public class Utils {
 
-    /**
-     * The constant DEBIT.
-     */
     public static final int DEBIT = 0;
-    /**
-     * The constant CREDIT.
-     */
     public static final int CREDIT = 1;
 
-    /**
-     * The constant INSERT.
-     */
     public static final int INSERT = 22;
-    /**
-     * The constant UPDATE.
-     */
     public static final int UPDATE = 33;
-    /**
-     * The constant DELETE.
-     */
     public static final int DELETE = 44;
-    /**
-     * The constant DELETE_ALL.
-     */
     public static final int DELETE_ALL = 55;
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
@@ -46,33 +25,16 @@ public class Utils {
     private static final Pattern VALID_PASSWORD_REGEX =
             Pattern.compile("^(?=.*[0-9])(?=.*[a-z]).{6,}$", Pattern.CASE_INSENSITIVE);
 
-    /**
-     * Validate email boolean.
-     *
-     * @param emailStr the email str
-     * @return the boolean
-     */
     public static boolean validateEmail(CharSequence emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
 
-    /**
-     * Validate password boolean.
-     *
-     * @param passwordStr the password str
-     * @return the boolean
-     */
     public static boolean validatePassword(CharSequence passwordStr) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
         return matcher.find();
     }
 
-    /**
-     * Generate token string.
-     *
-     * @return the string
-     */
     public static String generateToken() {
         String charstring = "abcdefghijklmnopqrstuvwxyz0123456789";
         String randalphanum = "";
@@ -95,51 +57,22 @@ public class Utils {
         return randalphanum;
     }
 
-    /**
-     * Success.
-     *
-     * @param context the context
-     * @param message the message
-     */
     public static void success(Context context, String message) {
         Toasty.success(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
-    /**
-     * Error.
-     *
-     * @param context the context
-     * @param message the message
-     */
     public static void error(Context context, String message) {
         Toasty.error(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
-    /**
-     * Info.
-     *
-     * @param context the context
-     * @param message the message
-     */
     public static void info(Context context, String message) {
         Toasty.info(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
-    /**
-     * Warning.
-     *
-     * @param context the context
-     * @param message the message
-     */
     public static void warning(Context context, String message) {
         Toasty.warning(context, message, Toasty.LENGTH_SHORT, true).show();
     }
 
-    /**
-     * Gets current date.
-     *
-     * @return the current date
-     */
     public static String getCurrentDate() {
         StringBuilder stringBuilder = new StringBuilder();
         switch (DateTime.now().getDayOfWeek()) {

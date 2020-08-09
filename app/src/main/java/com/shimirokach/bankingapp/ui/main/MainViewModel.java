@@ -10,9 +10,6 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-/**
- * The type Main view model.
- */
 @BindingMethods({
         @BindingMethod(
                 type = BottomNavigationView.class,
@@ -27,30 +24,14 @@ public class MainViewModel extends AndroidViewModel {
 
     private MainCallBack mainCallBack;
 
-    /**
-     * Instantiates a new Main view model.
-     *
-     * @param application the application
-     */
     public MainViewModel(@NonNull Application application) {
         super(application);
     }
 
-    /**
-     * Sets main call back.
-     *
-     * @param mainCallBack the main call back
-     */
     void setMainCallBack(MainCallBack mainCallBack) {
         this.mainCallBack = mainCallBack;
     }
 
-    /**
-     * On navigation click boolean.
-     *
-     * @param item the item
-     * @return the boolean
-     */
     public boolean onNavigationClick(@NonNull MenuItem item) {
         mainCallBack.onNavigationItemClick(item.getItemId());
         return true;
