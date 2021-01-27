@@ -66,7 +66,6 @@ public class HomeFragment extends Fragment implements HomeCallBack, Observer<Lis
         SessionManager.getInstance().expireToken();
         Utils.success(getContext(), "Logged out");
         startActivity(new Intent(getContext(), LoginActivity.class));
-
     }
 
     @Override

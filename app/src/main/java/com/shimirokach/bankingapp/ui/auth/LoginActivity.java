@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements AuthCallBack {
 
         viewModel.setAuthCallBack(this);
 
+
     }
 
     @Override
@@ -49,5 +50,6 @@ public class LoginActivity extends AppCompatActivity implements AuthCallBack {
     public void onFailure(String message) {
         Utils.info(getApplicationContext(), message);
         binding.setIsLoading(false);
+
     }
 }
