@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.shimirokach.bankingapp.ui.launch.LaunchViewModel" />
+            type="com.lunaticaliens.bankingapp.ui.launch.LaunchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context="com.shimirokach.bankingapp.ui.launch.LaunchingActivity">
+        tools:context="com.lunaticaliens.bankingapp.ui.launch.LaunchingActivity">
 
 
         <LinearLayout

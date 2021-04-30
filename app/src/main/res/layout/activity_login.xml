@@ -12,13 +12,13 @@
 
         <variable
             name="viewmodel"
-            type="com.shimirokach.bankingapp.ui.auth.AuthViewModel" />
+            type="com.lunaticaliens.bankingapp.ui.auth.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.shimirokach.bankingapp.ui.auth.LoginActivity">
+        tools:context="com.lunaticaliens.bankingapp.ui.auth.LoginActivity">
 
         <ImageView
             android:id="@+id/imageView"

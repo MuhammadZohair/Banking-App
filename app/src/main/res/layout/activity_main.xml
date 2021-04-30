@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.shimirokach.bankingapp.ui.main.MainViewModel" />
+            type="com.lunaticaliens.bankingapp.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.shimirokach.bankingapp.ui.main.MainActivity">
+        tools:context="com.lunaticaliens.bankingapp.ui.main.MainActivity">
 
         <FrameLayout
             android:id="@+id/fragment_container"

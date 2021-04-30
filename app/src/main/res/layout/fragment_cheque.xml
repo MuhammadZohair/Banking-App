@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.shimirokach.bankingapp.ui.cheque.ChequeViewModel" />
+            type="com.lunaticaliens.bankingapp.ui.cheque.ChequeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.shimirokach.bankingapp.ui.cheque.ChequeFragment">
+        tools:context="com.lunaticaliens.bankingapp.ui.cheque.ChequeFragment">
 
         <ImageView
             android:id="@+id/imageView2"

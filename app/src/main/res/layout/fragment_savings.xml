@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="com.shimirokach.bankingapp.ui.savings.SavingsViewModel" />
+            type="com.lunaticaliens.bankingapp.ui.savings.SavingsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.shimirokach.bankingapp.ui.savings.SavingsFragment">
+        tools:context="com.lunaticaliens.bankingapp.ui.savings.SavingsFragment">
 
         <LinearLayout
             android:id="@+id/linearLayout10"

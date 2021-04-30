@@ -13,23 +13,23 @@
 
         <variable
             name="viewmodel"
-            type="com.shimirokach.bankingapp.ui.home.HomeViewModel" />
+            type="com.lunaticaliens.bankingapp.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.shimirokach.bankingapp.ui.home.HomeFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_16sdp"
-        android:background="@drawable/dashboard_background"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        tools:context="com.lunaticaliens.bankingapp.ui.home.HomeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:background="@drawable/dashboard_background"
+            android:orientation="horizontal"
         android:paddingStart="@dimen/default_padding"
         android:paddingTop="@dimen/_8sdp"
         android:paddingEnd="@dimen/_16sdp"
