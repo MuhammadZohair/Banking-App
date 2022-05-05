@@ -1,31 +1,23 @@
-package com.lunaticaliens.bankingapp.data.local.dao;
+package com.lunaticaliens.bankingapp.data.local.dao
 
-import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
-
-import com.lunaticaliens.bankingapp.data.local.entities.Transactions;
-
-import java.util.List;
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import com.lunaticaliens.bankingapp.data.local.entities.Transactions
 
 @Dao
-public interface TransactionsDao {
-
+interface TransactionsDao {
     @Insert
-    void insertTransaction(Transactions transaction);
+    fun insertTransaction(transaction: Transactions?)
 
     @Update
-    void updateTransaction(Transactions transaction);
+    fun updateTransaction(transaction: Transactions?)
 
     @Delete
-    void deleteTransactions(Transactions user);
+    fun deleteTransactions(user: Transactions?)
 
     @Query("DELETE FROM transactions_table")
-    void deleteAllTransactions();
+    fun deleteAllTransactions()
 
-    @Query("SELECT * FROM transactions_table ORDER BY transaction_id ASC")
-    LiveData<List<Transactions>> getAllTransactions();
+    @get:Query("SELECT * FROM transactions_table ORDER BY transaction_id ASC")
+    val allTransactions: LiveData<List<Transactions?>?>?
 }

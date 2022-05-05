@@ -1,43 +1,35 @@
-package com.lunaticaliens.bankingapp.data.local.dao;
+package com.lunaticaliens.bankingapp.data.local.dao
 
-import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
-
-import com.lunaticaliens.bankingapp.data.local.entities.User;
-
-import java.util.List;
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import com.lunaticaliens.bankingapp.data.local.entities.User
 
 @Dao
-public interface UserDao {
-
+interface UserDao {
     @Insert
-    void insert(User user);
+    fun insert(user: User?)
 
     @Update
-    void update(User user);
+    fun update(user: User?)
 
     @Delete
-    void delete(User user);
+    fun delete(user: User?)
 
     @Query("DELETE FROM users_table")
-    void deleteAll();
+    fun deleteAll()
 
-    @Query("SELECT * FROM users_table ORDER BY user_id ASC")
-    LiveData<List<User>> getAll();
+    @get:Query("SELECT * FROM users_table ORDER BY user_id ASC")
+    val all: LiveData<List<User?>?>?
 
     @Query("SELECT * FROM users_table WHERE email_address = :email AND password = :password")
-    User login(String email, String password);
+    fun login(email: String?, password: String?): User?
 
     @Query("SELECT * FROM users_table WHERE email_address = :email")
-    User isRegistered(String email);
+    fun isRegistered(email: String?): User?
 
     @Query("SELECT * FROM users_table WHERE user_id = :id")
-    User getById(Long id);
+    fun getById(id: Long?): User?
 
     @Query("SELECT * FROM users_table WHERE token = :string")
-    User getByToken(String string);
+    fun getByToken(string: String?): User?
 }
