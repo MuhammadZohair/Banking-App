@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity implements AuthCallBack {
 
         viewModel.setAuthCallBack(this);
 
-
     }
 
     @Override

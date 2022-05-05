@@ -4,7 +4,6 @@
     package="com.lunaticaliens.bankingapp">
 
     <application
-        android:name="com.lunaticaliens.bankingapp.ApplicationContext"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,25 +11,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name="com.lunaticaliens.bankingapp.ui.profile.EditProfileActivity" />
-        <activity android:name="com.lunaticaliens.bankingapp.ui.splash.SplashActivity">
+
+        <activity
+            android:name="com.lunaticaliens.bankingapp.ui.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.lunaticaliens.bankingapp.ui.launch.LaunchingActivity" />
+
+        <activity
+            android:name="com.lunaticaliens.bankingapp.ui.launch.LaunchingActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor" />
+
         <activity
             android:name="com.lunaticaliens.bankingapp.ui.auth.LoginActivity"
             android:exported="true"
             android:screenOrientation="fullSensor" />
+
         <activity
             android:name="com.lunaticaliens.bankingapp.ui.auth.RegisterActivity"
             android:exported="true"
             android:screenOrientation="fullSensor" />
+
         <activity
             android:name="com.lunaticaliens.bankingapp.ui.main.MainActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor" />
+
+        <activity
+            android:name="com.lunaticaliens.bankingapp.ui.profile.EditProfileActivity"
             android:exported="true"
             android:screenOrientation="fullSensor" />
     </application>

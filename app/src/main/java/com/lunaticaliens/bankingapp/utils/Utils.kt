@@ -1,108 +1,92 @@
-package com.lunaticaliens.bankingapp.utils;
+package com.lunaticaliens.bankingapp.utils
 
-import android.content.Context;
+import android.content.Context
+import es.dmoral.toasty.Toasty
+import org.joda.time.DateTime
+import java.util.regex.Pattern
 
-import org.joda.time.DateTime;
+object Utils {
+    const val DEBIT = 0
+    const val CREDIT = 1
+    const val INSERT = 22
+    const val UPDATE = 33
+    const val DELETE = 44
+    const val DELETE_ALL = 55
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+    private val VALID_EMAIL_ADDRESS_REGEX =
+        Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
+    private val VALID_PASSWORD_REGEX =
+        Pattern.compile("^(?=.*[0-9])(?=.*[a-z]).{6,}$", Pattern.CASE_INSENSITIVE)
 
-import es.dmoral.toasty.Toasty;
-
-public class Utils {
-
-    public static final int DEBIT = 0;
-    public static final int CREDIT = 1;
-
-    public static final int INSERT = 22;
-    public static final int UPDATE = 33;
-    public static final int DELETE = 44;
-    public static final int DELETE_ALL = 55;
-
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    private static final Pattern VALID_PASSWORD_REGEX =
-            Pattern.compile("^(?=.*[0-9])(?=.*[a-z]).{6,}$", Pattern.CASE_INSENSITIVE);
-
-    public static boolean validateEmail(CharSequence emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
+    @JvmStatic
+    fun validateEmail(emailStr: CharSequence?): Boolean {
+        val matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr)
+        return matcher.find()
     }
 
-    public static boolean validatePassword(CharSequence passwordStr) {
-        Matcher matcher = VALID_PASSWORD_REGEX.matcher(passwordStr);
-        return matcher.find();
+    @JvmStatic
+    fun validatePassword(passwordStr: CharSequence?): Boolean {
+        val matcher = VALID_PASSWORD_REGEX.matcher(passwordStr)
+        return matcher.find()
     }
 
-    public static String generateToken() {
-        String charstring = "abcdefghijklmnopqrstuvwxyz0123456789";
-        String randalphanum = "";
-        double randroll;
-        String randchar;
-        for
-        (double i = 0; i < 150; i++) {
-            randroll = Math.random();
-            randchar = "";
-            for
-            (int j = 1; j <= 35; j++) {
-                if
-                (randroll <= (1.0 / 36.0 * j)) {
-                    randchar = Character.toString(charstring.charAt(j - 1));
-                    break;
+    @JvmStatic
+    fun generateToken(): String? {
+        val charstring = "abcdefghijklmnopqrstuvwxyz0123456789"
+        var randalphanum: String? = ""
+        var randroll: Double
+        var randchar: String?
+        for (i in 0..149) {
+            randroll = Math.random()
+            randchar = ""
+            for (j in 1..35) {
+                if (randroll <= 1.0 / 36.0 * j) {
+                    randchar = Character.toString(charstring[j - 1])
+                    break
                 }
             }
-            randalphanum += randchar;
+            randalphanum += randchar
         }
-        return randalphanum;
+        return randalphanum
     }
 
-    public static void success(Context context, String message) {
-        Toasty.success(context, message, Toasty.LENGTH_SHORT, true).show();
+    @JvmStatic
+    fun success(context: Context?, message: String?) {
+        Toasty.success(context!!, message!!, Toasty.LENGTH_SHORT, true).show()
     }
 
-    public static void error(Context context, String message) {
-        Toasty.error(context, message, Toasty.LENGTH_SHORT, true).show();
+    @JvmStatic
+    fun error(context: Context?, message: String?) {
+        Toasty.error(context!!, message!!, Toasty.LENGTH_SHORT, true).show()
     }
 
-    public static void info(Context context, String message) {
-        Toasty.info(context, message, Toasty.LENGTH_SHORT, true).show();
+    @JvmStatic
+    fun info(context: Context?, message: String?) {
+        Toasty.info(context!!, message!!, Toasty.LENGTH_SHORT, true).show()
     }
 
-    public static void warning(Context context, String message) {
-        Toasty.warning(context, message, Toasty.LENGTH_SHORT, true).show();
+    fun warning(context: Context?, message: String?) {
+        Toasty.warning(context!!, message!!, Toasty.LENGTH_SHORT, true).show()
     }
 
-    public static String getCurrentDate() {
-        StringBuilder stringBuilder = new StringBuilder();
-        switch (DateTime.now().getDayOfWeek()) {
-            case 1:
-                stringBuilder.append("Monday,  ");
-                break;
-            case 2:
-                stringBuilder.append("Tuesday,  ");
-                break;
-            case 3:
-                stringBuilder.append("Wednesday,  ");
-                break;
-            case 4:
-                stringBuilder.append("Thursday,  ");
-                break;
-            case 5:
-                stringBuilder.append("Friday,  ");
-                break;
-            case 6:
-                stringBuilder.append("Saturday,  ");
-                break;
-            case 7:
-                stringBuilder.append("Sunday,  ");
-                break;
+    @JvmStatic
+    val currentDate: String
+        get() {
+            val stringBuilder = StringBuilder()
+            when (DateTime.now().dayOfWeek) {
+                1 -> stringBuilder.append("Monday,  ")
+                2 -> stringBuilder.append("Tuesday,  ")
+                3 -> stringBuilder.append("Wednesday,  ")
+                4 -> stringBuilder.append("Thursday,  ")
+                5 -> stringBuilder.append("Friday,  ")
+                6 -> stringBuilder.append("Saturday,  ")
+                7 -> stringBuilder.append("Sunday,  ")
+            }
+            stringBuilder.append(
+                DateTime.now().dayOfMonth.toString() + "/" +
+                        DateTime.now().monthOfYear + "/" +
+                        DateTime.now().year
+            )
+            return stringBuilder.toString()
         }
-
-        stringBuilder.append(DateTime.now().getDayOfMonth() + "/" +
-                DateTime.now().getMonthOfYear() + "/" +
-                DateTime.now().getYear());
-
-        return stringBuilder.toString();
-    }
 }
